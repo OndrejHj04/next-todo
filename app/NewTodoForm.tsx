@@ -54,6 +54,7 @@ export default function NewTodoForm() {
       type: "todos",
     }).then(() => RevalidateDashboard());
     handleClose();
+    setForm({ task_name: "", estimated_time: null });
   };
 
   return (
@@ -81,7 +82,11 @@ export default function NewTodoForm() {
               setForm({ task_name: form.task_name, estimated_time: e })
             }
           />
-          <Button type="submit" variant="contained">
+          <Button
+            type="submit"
+            variant="contained"
+            disabled={!form.task_name.length || !form.estimated_time}
+          >
             Create
           </Button>
         </Paper>
